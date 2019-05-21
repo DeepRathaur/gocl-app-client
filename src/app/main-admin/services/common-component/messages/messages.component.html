@@ -1,0 +1,44 @@
+
+
+<!-- success -->
+<div class="success" *ngIf="msgObj.flag && msgObj.type == 'success'">
+  <div class="inner">
+    <div class="row">
+      <div class="col-sm-3"><i class="fa fa-check-circle" style="font-size: 48px; margin-top: 10px;"></i> </div>
+      <div class="col-sm-9">
+          <h4 style="color:#fff">Success</h4>
+          <span> {{msgObj.message}}</span>             
+      </div>
+    </div>          
+  </div>
+</div> 
+
+
+<!-- error -->
+<div class="success error" *ngIf="msgObj.flag && msgObj.type == 'error'">
+<div class="inner">
+  <div class="row">
+    <div class="col-sm-3"><i class="icon-close" style="font-size: 48px; margin-top: 10px;"></i> </div>
+    <div class="col-sm-9">
+        <h4 style="color:#fff">Error</h4>
+        <span> {{msgObj.message}}</span>             
+    </div>
+  </div>          
+</div>
+</div> 
+
+
+
+<!-- warning -->
+<div class="success warning" *ngIf="msgObj.flag && msgObj.type == 'warning'">
+<div class="inner">
+  <div class="row">
+    <div class="col-sm-3"><i aria-hidden="true" class="fa fa-warning" style="font-size: 48px; margin-top: 10px;"></i> </div>
+    <div class="col-sm-9">
+        <h4 style="color:#fff">Warning</h4>
+        <span> {{msgObj.message}}</span>             
+    </div>
+  </div>          
+</div>
+</div> 
+

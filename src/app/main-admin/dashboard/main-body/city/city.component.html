@@ -1,0 +1,116 @@
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">City</h4>
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-lg-8">
+    <!-- get City -->
+    <div class="card" *ngIf="!editFlg">
+        <div class="card-header">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Search by CitY name</label>
+                      <input type="text" name="searchfild" class="form-control" [(ngModel)]="searchFild" placeholder="Filter by City Name">
+                    </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Search by State name</label>
+                      <select class="form-control single-select" name="class" [(ngModel)]="searchCity" (change)="searchCitybyStatename($event.target.value)">
+                          <option *ngFor="let item of states" value="{{item.id}}">{{item.name}}</option>
+                      </select>
+                    </div>
+              </div>
+            </div>
+          </div>
+           
+          </div>
+      <div class="card-body">
+        <h5 class="card-title">All City</h5>
+        <div class="table-responsive">
+            <div id="table-wrapper">
+                <div id="table-scroll">
+          <table class="table  table-bordered" >
+            <thead>
+              <tr class="bg-light text-dark">
+                <td>Id</td>
+                <td>Name</td>
+                <td>State Name</td>
+                <td>Edit</td>
+                <td>Delete</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cities; let i = index">
+                <td *ngIf="item.name|Filter:searchFild">{{i+1}}</td>
+                <td *ngIf="item.name|Filter:searchFild">{{item.name}}</td>
+                <td *ngIf="item.name|Filter:searchFild">{{item.state.name}}</td>
+                <td *ngIf="item.name|Filter:searchFild"><button type="button" class="btn btn-warning waves-effect waves-light m-1" (click)="editCities(item.id)">
+                    <i class="fa fa-pencil"></i> </button></td>
+                <td *ngIf="item.name|Filter:searchFild"><button type="button" class="btn btn-danger waves-effect waves-light m-1" (click)="trash(item.id)">
+                    <i class="fa fa-trash-o"></i>
+                  </button></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <!-- edit cities -->
+   <div class="card" *ngIf="editFlg">
+      <div class="card-body">
+        <div class="card-title">Edit City</div>
+        <hr>
+        <form>
+           
+          <div class="form-group">
+            <label for="input-1">City Name</label>
+            <input type="text" class="form-control" id="input-1" name="updateCity" [(ngModel)]="editObj.name">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="updateCity()"><i class="icon-plus"></i>
+              Update</button>
+            <button type="submit" class="btn btn-danger shadow-primary px-5" (click)="cancelCity()"><i class="icon-plus"></i>
+              Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div> 
+  </div>
+
+  <div class="col-lg-4">
+    <!-- add city -->
+   <div class="card" >
+        <div class="card-body">
+        <div class="card-title">Add City</div>
+        <hr>
+         <form>
+            <div class="form-group">
+                <label>State</label>
+                <select class="form-control single-select" name="class" [(ngModel)]="addCity.state_id" >
+                  <option *ngFor="let item of states" value="{{item.id}}">{{item.name}}</option>
+                </select>
+              </div>
+        <div class="form-group">
+         <label for="input-1">City Name</label>
+         <input type="text" class="form-control" id="input-1" name="add" [(ngModel)]="addCity.name">
+        </div>    
+      
+      
+        <div class="form-group">
+         <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="add()"><i class="icon-plus"></i> Add</button>         
+        </div>
+       </form>
+      </div>
+      </div>
+  </div>
+</div>

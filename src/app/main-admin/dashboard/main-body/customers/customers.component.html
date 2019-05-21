@@ -1,0 +1,150 @@
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">Customers</h4>
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-lg-8">
+
+    <div class="card" *ngIf="!editFlg">    
+        <div class="card-body">
+          <h5 class="card-title">Customers</h5>
+          <div class="table-responsive">
+            <div id="table-wrapper">
+              <div id="table-scroll">
+                <table class="table  table-bordered">
+                  <thead>
+                    <tr class="bg-light text-dark">
+                      <td>Name</td>
+                      <td>Mobile No</td>
+                      <!-- <td>Password</td> -->
+                      <td>Address</td>
+                      <td>Locality</td>
+                      <td>Home Type</td>
+                      <td>Field Boy</td>
+
+                      <td>Edit</td>
+                      <td>Delete</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of customers; let i = index">
+                      <td>{{item.name}}</td>
+                      <td>{{item.mobileno}}</td>
+                      <!-- <td>{{item.password}}</td> -->
+                      <td>{{item.address}}</td>
+                      <td>{{item.locality.name}}</td>
+                      <td>{{item.home_type.name}}</td>
+                      <td>{{item.field_boy.name}}</td>
+                      <td><button type="button" class="btn btn-warning waves-effect waves-light m-1"
+                          (click)="edit(item.id)">
+                          <i class="fa fa-pencil"></i> </button></td>
+                      <td><button type="button" class="btn btn-danger waves-effect waves-light m-1"
+                          (click)="trash(item.id)">
+                          <i class="fa fa-trash-o"></i>
+                        </button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+
+      <!-- edit cities -->
+      
+    </div>
+
+    <div class="card" *ngIf="editFlg">
+      <div class="card-body">
+        <div class="card-title">Edit</div>
+        <hr>
+        <form>
+  
+          <div class="form-group">
+            <label for="input-1">Name</label>
+            <input type="text" class="form-control" id="input-1"  name = "name"  [(ngModel)]="editObj.name">
+          </div>
+  
+  
+          <div class="form-group">
+            <label for="input-1">Mobile No</label>
+            <input type="text" class="form-control" id="input-1" name = "mobileno" [(ngModel)]="editObj.mobileno">
+          </div>
+  
+          Address<textarea class="form-control" name="description" [(ngModel)]="editObj.address">
+              </textarea>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="update()"><i
+                class="icon-plus"></i>
+              Update</button>
+              <button type="submit" class="btn btn-danger shadow-primary px-5 ml-2" (click)="cancel()"><i class="icon-plus"></i>
+                Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+  
+    
+  
+  <div class="col-lg-4">
+  <div class="card" *ngIf = "!editFlg">
+    <div class="card-body">
+      <div class="card-title">Add </div>
+      <hr>
+      <form>
+
+        <div class="form-group">
+          <label for="input-1">Name</label>
+          <input type="text" class="form-control" id="input-1" name = "name" [(ngModel)]="addObj.name">
+        </div>
+
+
+        <div class="form-group">
+          <label for="input-1">Mobile No</label>
+          <input type="text" class="form-control" id="input-1" name = "mobileno" [(ngModel)]="addObj.mobileno">
+        </div>
+
+       
+
+        <div class="form-group">
+          <label>Locality</label>
+          <select class="form-control single-select" name="class" [(ngModel)]="addObj.locality_id">
+            <option *ngFor="let item of locality" value="{{item.id}}">{{item.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Home Type</label>
+          <select class="form-control single-select" name="class" [(ngModel)]="addObj.home_type_id">
+            <option *ngFor="let item of hometype" value="{{item.id}}">{{item.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Field Boy</label>
+          <select class="form-control single-select" name="class" [(ngModel)]="addObj.field_boy_id">
+            <option *ngFor="let item of fieldboy" value="{{item.id}}">{{item.name}}</option>
+          </select>
+        </div>
+
+        Address<textarea class="form-control" name="description" [(ngModel)]="addObj.address">
+          </textarea>
+        <br>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="add()"><i class="icon-plus"></i>
+            Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>

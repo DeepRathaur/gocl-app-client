@@ -1,0 +1,88 @@
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">States</h4>
+  </div>
+</div>
+
+
+<div class="row">
+
+  <div class="col-lg-8">
+    <!-- get states -->
+    <div class="card" *ngIf="!editFlg">
+      <div class="card-body">
+        <h5 class="card-title">All states</h5>
+        <div class="table-responsive">
+            <div id="table-wrapper">
+                <div id="table-scroll">
+          <table class="table  table-bordered">
+            <thead>
+              <tr class="bg-light text-dark">
+                <td>Id</td>
+                <td>Name</td>
+                <td>Edit</td>
+                <td>Delete</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of states; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td><button type="button" class="btn btn-warning waves-effect waves-light m-1" (click)="editStates(item.id)">
+                    <i class="fa fa-pencil"></i> </button></td>
+                <td><button type="button" class="btn btn-danger waves-effect waves-light m-1" (click)="trash(item.id)">
+                    <i class="fa fa-trash-o"></i>
+                  </button></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end states -->
+
+
+    <!-- edit states -->
+   <div class="card" *ngIf="editFlg">
+      <div class="card-body">
+        <div class="card-title">Edit State</div>
+        <hr>
+        <form>
+          <div class="form-group">
+            <label for="input-1">State Name</label>
+            <input type="text" class="form-control" id="input-1" name="updateStates" [(ngModel)]="editObj.name">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="updateStates()"><i class="icon-plus"></i>
+              Update</button>
+            <button type="submit" class="btn btn-danger shadow-primary px-5" (click)="cancelStates()"><i class="icon-plus"></i>
+              Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div> 
+  </div>
+
+  <div class="col-lg-4">
+    <!-- add states -->
+   <div class="card" >
+        <div class="card-body">
+        <div class="card-title">Add State</div>
+        <hr>
+         <form>
+        <div class="form-group">
+         <label for="input-1">State Name</label>
+         <input type="text" class="form-control" id="input-1" name="add" [(ngModel)]="addState.name">
+        </div>    
+      
+      
+        <div class="form-group">
+         <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="add()"><i class="icon-plus"></i> Add</button>         
+        </div>
+       </form>
+      </div>
+      </div>
+  </div>
+</div>

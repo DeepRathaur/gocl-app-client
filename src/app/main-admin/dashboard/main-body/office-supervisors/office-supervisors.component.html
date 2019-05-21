@@ -1,0 +1,137 @@
+<div class="row pt-2 pb-2">
+  <div class="col-sm-9">
+    <h4 class="page-title">Office Supervisor</h4>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-lg-8">
+    <!-- get Office Supervisor -->
+    <div class="card" *ngIf="!editFlg">
+        <div class="card-header">
+          <div class="col-sm-12">
+            <div class="row">
+              <!-- <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Search by Office Supervisor name</label>download
+                      <button type="button" class="btn btn-warning waves-effect waves-light m-1" (click)="download()"><i class="fa fa-pencil"></i> </button>
+                    </div>
+              </div> -->
+              <!-- <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="">Search by City name</label>
+                      <select class="form-control single-select" name="class" [(ngModel)]="searchOffice Supervisor" (change)="searchOffice SupervisorbyCityename($event.target.value)">
+                          <option *ngFor="let item of cities" value="{{item.id}}">{{item.name}}</option>
+                      </select>
+                    </div>
+              </div> -->
+            </div>
+          </div>
+           
+          </div>
+      <div class="card-body">
+        <h5 class="card-title">All Office Supervisor</h5>
+        <div class="table-responsive">
+            <div id="table-wrapper">
+                <div id="table-scroll">
+          <table class="table  table-bordered" >
+            <thead>
+              <tr class="bg-light text-dark">
+                <td>Id</td>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Mobile No</td>
+                <td>Edit</td>
+                <td>Delete</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of supervisors; let i = index">
+                <td *ngIf="item.name|Filter:searchFild">{{i+1}}</td>
+                <td *ngIf="item.name|Filter:searchFild">{{item.name}}</td>
+                <td *ngIf="item.name|Filter:searchFild">{{item.address}} </td>
+                <td *ngIf="item.name|Filter:searchFild">{{item.mobileno}}</td>
+                <td *ngIf="item.name|Filter:searchFild"><button type="button" class="btn btn-warning waves-effect waves-light m-1" (click)="editOfficeSupervisor(item.id)">
+                    <i class="fa fa-pencil"></i> </button></td>
+                <td *ngIf="item.name|Filter:searchFild"><button type="button" class="btn btn-danger waves-effect waves-light m-1" (click)="trash(item.id)">
+                    <i class="fa fa-trash-o"></i>
+                  </button></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <!-- edit cities -->
+   <div class="card" *ngIf="editFlg">
+      <div class="card-body">
+        <div class="card-title">Edit Office Supervisor</div>
+        <hr>
+        <form>
+           
+          <div class="form-group">
+            <label for="input-1">Office Supervisor Name Office</label>
+            <input type="text" class="form-control" id="input-1" name="updateOfficeSupervisor" [(ngModel)]="editObj.name">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="updateOfficeSupervisor()"><i class="icon-plus"></i>
+              Update</button>
+            <button type="submit" class="btn btn-danger shadow-primary px-5" (click)="cancelOfficeSupervisor()"><i class="icon-plus"></i>
+              Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div> 
+  </div>
+
+  <div class="col-lg-4">
+    <!-- add Office Supervisor -->
+   <div class="card" >
+        <div class="card-body">
+        <div class="card-title">Add Office Supervisor</div>
+        <hr>
+         <form>
+           
+              <div class="form-group">
+                <label>Nagar Nigam Office </label>
+                <select class="form-control single-select" name="class" [(ngModel)]="AddOfficeSupervisor.nagar_nigam_office_id" >
+                  <option *ngFor="let item of nagarnigamoffices" value="{{item.id}}">{{item.name}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Localities</label>
+                <select class="form-control single-select" name="class" [(ngModel)]="AddOfficeSupervisor.locality_id">
+                  <option *ngFor="let item of localities" value="{{item.id}}">{{item.name}}</option>
+                </select>
+              </div>
+        <div class="form-group">
+         <label for="input-1">Office Supervisor Name</label>
+         <input type="text" class="form-control" id="input-1" name="add" [(ngModel)]="AddOfficeSupervisor.name">
+        </div>    
+      
+        <div class="form-group">
+          <label for="input-1">Mobile No</label>
+          <input type="text" class="form-control" id="input-1" name="add" [(ngModel)]="AddOfficeSupervisor.mobileno">
+         </div> 
+
+         <div class="form-group">
+          <label for="input-1">Password</label>
+          <input type="password" class="form-control" id="input-1" name="add" [(ngModel)]="AddOfficeSupervisor.password">
+         </div> 
+
+         <div class="form-group">
+          <label for="input-1">Address</label>
+          <input type="text" class="form-control" id="input-1" name="add" [(ngModel)]="AddOfficeSupervisor.address">
+         </div> 
+      
+        <div class="form-group">
+         <button type="submit" class="btn btn-primary shadow-primary px-5" (click)="add()"><i class="icon-plus"></i> Add</button>         
+        </div>
+       </form>
+      </div>
+      </div>
+  </div>
+</div>
